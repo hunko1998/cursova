@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Workers</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+          integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+</head>
+
+<body ng-app="App">
+Workers
+<div ng-controller="Workers as ctrl" id="block">
+    <div class="container-fluid">
+        <div class="datagrid">
+            <table>
+                <tbody>
+                <tr>
+
+                    <th  class="my-th">
+                        <a href="\admins.html" style="color: white">Admins</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\authors.html" style="color: white">Authors</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\professions.html" style="color: white">Professions</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\cashboxs.html" style="color: white">Cashboxs</a>
+                    </th>
+                    <th class="my-th">
+                        <a href="\genres.html" style="color: white">Genres</a>
+                    </th>
+                    <th class="my-th">
+                        <a href="\ranks.html" style="color: white">Ranks</a>
+                    </th>
+
+                </tr>
+                <tr>
+                    <th class="my-th">
+                        <a href="\roles.html" style="color: white">Roles</a>
+                    </th>
+                    <th class="my-th">
+                        <a href="\periods.html" style="color: white">Periods</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\shows.html" style="color: white">Shows</a>
+                    </th>
+                    <th class="my-th-selected" >
+                        <a style="color: white">Workers</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\tourings.html" style="color: white">Tourings</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\main.html" style="color: white">Main</a>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-heading"> </div>
+        <div class="datagrid">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Year</th>
+                    <th>Experience</th>
+                    <th>Gender</th>
+                    <th>Children</th>
+                    <th>Salary</th>
+                    <th>idRoles</th>
+                    <th>idProfessions</th>
+                    <th>idTourings</th>
+                    <th>idRanks</th>
+
+                    <th width="65px">
+                        <button type="button" class="btn-success" data-toggle="modal" data-target="#addModal"
+                                style="width: 63px" ng-click="ctrl.startInsertWorkers()">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </th>
+                </tr>                </thead>
+                <tbody>
+                <tr ng-repeat="item in workers">
+                    <td>{{item.idWorkers}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.year}}</td>
+                    <td>{{item.experience}}</td>
+                    <td>{{item.gender}}</td>
+                    <td>{{item.children}}</td>
+                    <td>{{item.salary}}</td>
+                    <td>{{item.roles.idRoles}}</td>
+                    <td>{{item.professions.idProfessions}}</td>
+                    <td>{{item.tourings.idTourings}}</td>
+                    <td>{{item.ranks.idRanks}}</td>
+
+
+                    <td scope="row">
+                        <button type="button" class="btn-warning" data-toggle="modal" data-target="#updateModal"
+                                ng-click="ctrl.startUpdateWorkers(item.idWorkers,item.name,item.year,item.experience,item.gender,item.children,item.salary,item.roles.idRoles,item.professions.idProfessions,item.tourings.idTourings,item.ranks.idRanks)"
+                                style="width: 30px">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button type="button" class="btn-danger" ng-click="ctrl.delFromWorkers(item.idWorkers)"
+                                style="width: 30px">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--добавление ReservationOrganization-->
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addModalLabel">Add</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Закрити">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Enter name
+                        <br>
+                        <input type="text" id="Name">
+                        <br>
+                        Enter year
+                        <br>
+                        <input type="int" id="Year">
+                        <br>
+                        Enter experience
+                        <br>
+                        <input type="text" id="Experience">
+                        <br>
+                        Enter gender
+                        <br>
+                        <input type="text" id="Gender">
+                        <br>
+                        Enter salary
+                        <br>
+                        <input type="int" id="Salary">
+                        <br>
+                        Enter children
+                        <br>
+                        <input type="int" id="Children">
+                        <br>
+
+                        Введіть idRole
+                        <br>
+                        <select id="Roles">
+                        </select>
+                        <br>
+                        Введіть idProfessions
+                        <br>
+                        <select id="Professions">
+                        </select>
+                        <br>
+                        Введіть idTourings
+                        <br>
+                        <select id="Tourings">
+                        </select>
+                        <br>
+                        Введіть idRanks
+                        <br>
+                        <select id="Ranks">
+                        </select>
+                        <br>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="ctrl.insertToWorkers()">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--обновленіє ReservationOrganization-->
+        <div class="modal fade" id="updateModal" tabindex="-2" role="dialog" aria-labelledby="updateModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateModalLabel">Update</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Закрити">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div id="WorkersIdUPD"></div>
+
+                        Enter name
+                        <br>
+                        <input type="text" id="NameUPD">
+                        <br>
+                        Enter year
+                        <br>
+                        <input type="int" id="YearUPD">
+                        <br>
+                        Enter experience
+                        <br>
+                        <input type="text" id="ExperienceUPD">
+                        <br>
+                        Enter gender
+                        <br>
+                        <input type="text" id="GenderUPD">
+                        <br>
+                        Enter salary
+                        <br>
+                        <input type="int" id="SalaryUPD">
+                        <br>
+                        Enter children
+                        <br>
+                        <input type="int" id="ChildrenUPD">
+                        <br>
+                        Enter role
+                        <br>
+                        <select id="RolesUPD">
+                        </select>
+                        <br>
+                        Enter profession
+                        <br>
+                        <select id="ProfessionsUPD">
+                        </select>
+                        <br>
+                        Enter idTourings
+                        <br>
+                        <select id="TouringsUPD">
+                        </select>
+                        <br>
+                       Enter IdRanks
+                        <br>
+                        <select id="RanksUPD">
+                        </select>
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="ctrl.updateWorkers()">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+</body>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/Workers.js"></script>
+
+</html>
+
+
+

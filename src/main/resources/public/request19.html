@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Запит №18</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body ng-app = "kursova" style="margin: 15px">
+<div  style="margin-top: 30px" ng-controller = "AppCtrl as ctrl" ><!--class="container"-->
+    <!--<div class="row">
+        <div class="col-md12">-->
+    <div class="container-fluid"><!--<div class="panel panel-default">-->
+        <div class="datagrid" >
+            <table>
+                <tbody>
+                <tr>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request1.html" style="color: white">1</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request2.html" style="color: white">2</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request3.html" style="color: white">3</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request4.html" style="color: white">4</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request5.html" style="color: white">5</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request6.html" style="color: white">6</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request7.html" style="color: white">7</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request8.html" style="color: white">8</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request9.html" style="color: white">9</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request10.html" style="color: white">10</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request11.html" style="color: white">11</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request12.html" style="color: white">12</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request13.html" style="color: white">13</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request14.html" style="color: white">14</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request15.html" style="color: white">15</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request16.html" style="color: white">16</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request17.html" style="color: white">17</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request18.html" style="color: white">18</a>
+                    </th>
+                    <th class="my-th-selected" style="width: 50px">
+                        <a style="color: white">19</a>
+                    </th>
+                    <th  class="my-th"style="width: 50px">
+                        <a href="\request20.html" style="color: white">20</a>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-heading"> Query19 </div>
+        <div  style="font-size: 20px">
+
+
+
+
+
+
+        <div class="datagrid">
+
+            <table ><!--class="table table-striped"-->
+                <thead>
+                <tr>
+                    <th width="40px">Id Shows</th>
+                    <th width="40px">title</th>
+                    <th width="40px">seasons</th>
+                    <th width="40px">played</th>
+                    <th width="40px">age</th>
+                    <th width="40px">premier</th>
+                    <th width="40px">preimerdate</th>
+                    <th width="40px">subtype</th>
+                    <th width="40px">authors</th>
+                    <th width="40px">genres</th>
+                    <th width="40px">periods</th>
+                    <th width="40px">cashboxs</th>
+                    <th width="40px">admins</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat = "item in request19">
+
+                    <td>{{item.idShows}}</td>
+                    <td>{{item.show}}</td>
+                    <td>{{item.seasons}}</td>
+                    <td>{{item.played}}</td>
+                    <td>{{item.age}}</td>
+                    <td>{{item.premier}}</td>
+                    <td>{{item.premierdate}}</td>
+                    <td>{{item.subtype}}</td>
+                    <td>{{item.authors.idAuthors}}</td>
+                    <td>{{item.genres.idGenres}}</td>
+                    <td>{{item.periods.idPeriods}}</td>
+                    <td>{{item.cashboxs.idCashboxs}}</td>
+                    <td>{{item.admins.idAdmins}}</td>
+                </tr>
+                </tbody>
+
+
+
+            </table>
+        </div>
+
+
+    </div>
+    <!--  </div>
+  </div>-->
+</div>
+</body>
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="requests/request19.js"></script>
+
+
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>-->
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shows</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+          integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+</head>
+
+<body ng-app="App">
+Shows
+<div ng-controller="Shows as ctrl" id="block">
+    <div class="container-fluid">
+        <div class="datagrid">
+            <table>
+                <tbody>
+                <tr>
+
+                    <th  class="my-th">
+                        <a href="\admins.html" style="color: white">Admins</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\authors.html" style="color: white">Authors</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\professions.html" style="color: white">Professions</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\cashboxs.html" style="color: white">Cashboxs</a>
+                    </th>
+                    <th class="my-th">
+                        <a href="\genres.html" style="color: white">Genres</a>
+                    </th>
+                    <th class="my-th">
+                        <a href="\ranks.html" style="color: white">Ranks</a>
+                    </th>
+
+                </tr>
+                <tr>
+                    <th class="my-th">
+                        <a href="\roles.html" style="color: white">Roles</a>
+                    </th>
+                    <th class="my-th">
+                        <a href="\periods.html" style="color: white">Periods</a>
+                    </th>
+                    <th class="my-th-selected" >
+                        <a style="color: white">Shows</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\workers.html" style="color: white">Workers</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\tourings.html" style="color: white">Tourings</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\main.html" style="color: white">Main</a>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-heading"> </div>
+        <div class="datagrid">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Sesons</th>
+                    <th>Played</th>
+                    <th>Age</th>
+                    <th>Premiere</th>
+                    <th>Premiere date</th>
+                    <th>Subtype</th>
+                    <th>idAuthor</th>
+                    <th>idGenre</th>
+                    <th>idPeriod</th>
+                    <th>idCashbox</th>
+                    <th>idAdmin</th>
+
+                    <th width="65px">
+                        <button type="button" class="btn-success" data-toggle="modal" data-target="#addModal"
+                                style="width: 63px" ng-click="ctrl.startInsertShows()">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </th>
+                </tr>                </thead>
+                <tbody>
+                <tr ng-repeat="item in shows">
+                    <td>{{item.idShows}}</td>
+                    <td>{{item.show}}</td>
+                    <td>{{item.seasons}}</td>
+                    <td>{{item.played}}</td>
+                    <td>{{item.age}}</td>
+                    <td>{{item.premier}}</td>
+                    <td>{{item.premierdate}}</td>
+                    <td>{{item.subtype}}</td>
+                    <td>{{item.authors.idAuthors}}</td>
+                    <td>{{item.genres.idGenres}}</td>
+                    <td>{{item.periods.idPeriods}}</td>
+                    <td>{{item.cashboxs.idCashboxs}}</td>
+                    <td>{{item.admins.idAdmins}}</td>
+
+
+                    <td scope="row">
+                        <button type="button" class="btn-warning" data-toggle="modal" data-target="#updateModal"
+                                ng-click="ctrl.startUpdateShows(item.idShows,item.show,item.year,item.seasons,item.played,item.age,item.premier,item.premierdate,item.subtype,item.authors.idAuthors,item.genres.idGenres,item.periods.idPeriods,item.cashboxs.idCashboxs,item.admins.idAdmins)"
+                                style="width: 30px">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button type="button" class="btn-danger" ng-click="ctrl.delFromShows(item.idShows)"
+                                style="width: 30px">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--добавление ReservationOrganization-->
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addModalLabel">Add</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Enter title
+                        <br>
+                        <input type="text" id="Show">
+                        <br>
+                        Enter season
+                        <br>
+                        <input type="text" id="Seasons">
+                        <br>
+                        Show played or no
+                        <br>
+                        <input type="checkbox" id="Played">
+                        <br>
+                        Enter age
+                        <br>
+                        <input type="int" id="Age">
+                        <br>
+                        Enter premiere
+                        <br>
+                        <input type="text" id="Premier">
+                        <br>
+                        Enter premiere date
+                        <br>
+                        <input type="date" id="Preimerdate">
+                        <br>
+                        Enter Subtype
+                        <br>
+                        <input type="text" id="Subtype">
+                        <br>
+
+                        Enter idAuthors
+                        <br>
+                        <select id="Authors">
+                        </select>
+                        <br>
+                        Enter idGenres
+                        <br>
+                        <select id="Genres">
+                        </select>
+                        <br>
+                        Enter idPeriods
+                        <br>
+                        <select id="Periods">
+                        </select>
+                        <br>
+                        Enter idCashboxs
+                        <br>
+                        <select id="Cashboxs">
+                        </select>
+                        <br>
+                        Enter idAdmins
+                        <br>
+                        <select id="Admins">
+                        </select>
+                        <br>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="ctrl.insertToShows()">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--обновленіє ReservationOrganization-->
+        <div class="modal fade" id="updateModal" tabindex="-2" role="dialog" aria-labelledby="updateModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateModalLabel">Update</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Закрити">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <br>
+                        <div id="ShowsIdUPD"></div>
+                        Enter Admin
+                        <br>
+                        <input type="text" id="ShowUPD">
+                        <br>
+                        Enter season
+                        <br>
+                        <input type="text" id="SeasonsUPD">
+                        <br>
+                        Show played or no
+                        <br>
+                        <input type="checkbox" id="PlayedUPD">
+                        <br>
+                        Enter age
+                        <br>
+                        <input type="int" id="AgeUPD">
+                        <br>
+                        Enter premiere
+                        <br>
+                        <input type="text" id="PremierUPD">
+                        <br>
+                        Enter premiere date
+                        <br>
+                        <input type="date" id="PremierdateUPD">
+                        <br>
+                        Enter Subtype
+                        <br>
+                        <input type="text" id="SubtypeUPD">
+                        <br>
+
+                        Enter idAuthor
+                        <br>
+                        <select id="AuthorsUPD">
+                        </select>
+                        <br>
+                        Enter idGenres
+                        <br>
+                        <select id="GenresUPD">
+                        </select>
+                        <br>
+                        Enter idPeriods
+                        <br>
+                        <select id="PeriodsUPD">
+                        </select>
+                        <br>
+                        Enter idCashbox
+                        <br>
+                        <select id="CashboxsUPD">
+                        </select>
+                        <br>
+                        Enter idAdmins
+                        <br>
+                        <select id="AdminsUPD">
+                        </select>
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="ctrl.updateShows()">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+</body>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/Shows.js"></script>
+
+</html>
+
+
+

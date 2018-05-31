@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+          integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+</head>
+
+<body ng-app="App">
+Admin
+<div ng-controller="Admins as ctrl" id="block">
+    <div class="container-fluid">
+        <div class="datagrid">
+            <table>
+                <tbody>
+                <tr>
+
+                    <th class="my-th-selected" >
+                        <a style="color: white">Admin</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\authors.html" style="color: white">Authors</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\professions.html" style="color: white">Professions</a>
+                    </th>
+                    <th class="my-th">
+                        <a href="\cashboxs.html" style="color: white">Cashboxs</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\genres.html" style="color: white">Genres</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\ranks.html" style="color: white">Ranks</a>
+                    </th>
+
+                </tr>
+                <tr>
+                    <th class="my-th">
+                        <a href="\roles.html" style="color: white">Roles</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\periods.html" style="color: white">Periods</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\shows.html" style="color: white">Shows</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\workers.html" style="color: white">Workers</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\tourings.html" style="color: white">Tourings</a>
+                    </th>
+                    <th  class="my-th">
+                        <a href="\main.html" style="color: white">Main</a>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-heading"> </div>
+        <div class="datagrid">
+            <table>
+                <thead>
+                <tr>
+                    <th width="40px">ID</th>
+                    <th>Admin</th>
+                    <th>Amount</th>
+                    <th>Sold</th>
+
+                    <th width="65px">
+                        <button type="button" class="btn-success" data-toggle="modal" data-target="#addModal"
+                                style="width: 63px">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in admins">
+                    <td scope="row">{{item.idAdmins}}</td>
+                    <td scope="row">{{item.admin}}</td>
+                    <td scope="row">{{item.amount}}</td>
+                    <td scope="row">{{item.sold}}</td>
+
+
+                    <td scope="row">
+                        <button type="button" class="btn-warning" data-toggle="modal" data-target="#updateModal"
+                                ng-click="ctrl.startUpdateAdmins(item.idAdmins,item.admin,item.amount,item.sold)"
+                                style="width: 30px">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button type="button" class="btn-danger" ng-click="ctrl.delFromAdmins(item.idAdmins)"
+                                style="width: 30px">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--добавление Service-->
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addModalLabel">Add</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        Enter Admin
+                        <br>
+                        <input type="text" id="Admin">
+                        <br>
+                        Enter Amount
+                        <br>
+                        <input type="text" id="Amount">
+                        <br>
+                        Enter Sold
+                        <br>
+                        <input type="text" id="Sold">
+                        <br>
+
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="ctrl.insertToAdmins()">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--обновленіє Service-->
+        <div class="modal fade" id="updateModal" tabindex="-2" role="dialog" aria-labelledby="updateModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateModalLabel">Add</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+
+
+                    <div class="modal-body">
+                        <br>
+                        <div id="AdminsIdUPD"></div>
+                        Enter Admin
+                        <br>
+                        <input type="text" id="AdminUPD">
+                        <br>
+                        Enter Amount
+                        <br>
+                        <input type="text" id="AmountUPD">
+                        <br>
+                        Enter Sold
+                        <br>
+                        <input type="text" id="SoldUPD">
+                        <br>
+
+
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="ctrl.updateAdmins()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+</body>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/Admins.js"></script>
+
+</html>
