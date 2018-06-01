@@ -4,7 +4,7 @@ app.controller("AppCtrl", function ($http, $scope){
     $scope.request2 = [];
     var experience= 'senior';
 
-    $http.get('http://localhost:8080/request/request2?experience='+experience).then(function (response){
+    $http.get('/request/request2?experience='+experience).then(function (response){
         $scope.request2=response.data;
         console.log(response);
         /*$http.get('/storageplace/get').then(function (response){
@@ -29,7 +29,7 @@ app.controller("AppCtrl", function ($http, $scope){
          idStoragePlace= document.getElementById("StoragePlace").options[index].value;*/
         experience = document.getElementById("experience").value;
 
-        $http.get('http://localhost:8080/request/request2?experience='+experience).then(function (response){
+        $http.get('/request/request2?experience='+experience).then(function (response){
             $scope.request2=response.data;
             console.log(response);
         });
