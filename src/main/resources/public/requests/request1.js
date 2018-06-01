@@ -2,7 +2,7 @@ var app = angular.module("kursova", []);
 
 app.controller("AppCtrl", function ($http, $scope){
     $scope.request1 = [];
-    var profession= 'actor';
+    var profession= 'acto';
 
     $http.get('/request/request1?profession='+profession).then(function (response){
         $scope.request1=response.data;
