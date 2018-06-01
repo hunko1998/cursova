@@ -4,7 +4,7 @@ app.controller("AppCtrl", function ($http, $scope){
     $scope.request1 = [];
     var profession= 'acto';
 
-    $http.get('/request/request1?profession='+profession).then(function (response){
+    $http.get('/requests/request1?profession='+profession).then(function (response){
         $scope.request1=response.data;
         console.log(response);
         /*$http.get('/storageplace/get').then(function (response){
@@ -29,7 +29,7 @@ app.controller("AppCtrl", function ($http, $scope){
          idStoragePlace= document.getElementById("StoragePlace").options[index].value;*/
         profession = document.getElementById("profession").value;
 
-        $http.get('/request/request1?profession='+profession).then(function (response){
+        $http.get('/requests/request1?profession='+profession).then(function (response){
             $scope.request1=response.data;
             console.log(response);
         });
